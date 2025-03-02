@@ -2,9 +2,14 @@ const express = require('express');
 const dotenv = require('dotenv');
 const router = require('./router/router');
 const error = require('./utils/errorHandle');
+const helmet = require('helmet');
+const hpp = require('hpp');
 
 const app = express();
 const port = 5432;
+
+app.use(helmet());
+app.use(hpp());
 
 app.use(express.json({ limit: "200kb" }));
 dotenv.config({ path: './config.env' });
